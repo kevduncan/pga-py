@@ -15,7 +15,6 @@ sheets = wb.sheetnames
 sheet_num = 0
 
 for url in sg_urls:
-    data = []
     res = requests.get(url)
     res.raise_for_status()
     urlSoup = bs4.BeautifulSoup(res.text, 'html.parser')
@@ -26,6 +25,11 @@ for url in sg_urls:
     header_vals = [ele.text.strip() for ele in headers]
     sheet_name = sheets[sheet_num]
     sheet = wb[sheet_name]
+
+    #for row in sheet['A1:Z300']:
+       # for cell in row:
+          #  cell.value = None
+
     sheet.append(header_vals)
 
     table_body = table.find('tbody')
