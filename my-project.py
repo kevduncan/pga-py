@@ -10,9 +10,8 @@ sg_urls = ['https://www.pgatour.com/stats/stat.02675.html',
 ]
 
 wb = Workbook()
-pga_xl = load_workbook('pga.xlsx')
-sheets = pga_xl.sheetnames
-print(sheets)
+wb = load_workbook('pga.xlsx')
+sheets = wb.sheetnames
 sheet_num = 0
 
 for url in sg_urls:
@@ -25,8 +24,8 @@ for url in sg_urls:
     table_head = table.find('thead')
     headers = table_head.find_all('th')
     header_vals = [ele.text.strip() for ele in headers]
-    print(sheets[sheet_num])
-    sheet = wb[sheets[sheet_num]]
+    sheet_name = sheets[sheet_num]
+    sheet = wb[sheet_name]
     sheet.append(header_vals)
 
     table_body = table.find('tbody')
@@ -34,7 +33,7 @@ for url in sg_urls:
     for row in rows:
         cols = row.find_all('td')
         cols = [ele.text.strip() for ele in cols]
-        sheet.append(header_vals)   
+        sheet.append(cols)
     sheet_num += 1
 
 wb.save('pga.xlsx')
