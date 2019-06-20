@@ -1,1 +1,1 @@
-A pythons script to scrape stats from the PGA website and write them to an excel file
+A python script to scrape stats from the PGA website and write them to an excel file. Shipped with an excel file that has a sheet for comparing golfers and a model.
